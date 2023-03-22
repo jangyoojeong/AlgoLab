@@ -1,5 +1,4 @@
 import java.util.*;
-import java.text.SimpleDateFormat;
 
 class Solution {
     public int[] solution(String today, String[] terms, String[] privacies) throws Exception {
