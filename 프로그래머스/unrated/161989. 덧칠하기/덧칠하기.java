@@ -1,5 +1,3 @@
-import java.util.*;
-
 class Solution {
     public int solution(int n, int m, int[] section) {
         int paint = section[0];
@@ -13,7 +11,6 @@ class Solution {
                 paint = section[i];
             }
         }
-        
         
         return result;
     }
