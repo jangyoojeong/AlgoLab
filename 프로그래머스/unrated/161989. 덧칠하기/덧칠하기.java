@@ -2,39 +2,19 @@ import java.util.*;
 
 class Solution {
     public int solution(int n, int m, int[] section) {
-        int answer = 0;
+        int paint = section[0];
+        int result = 1;
         
-        int [] arr = new int [n];
-        List<Integer> sectionList = new ArrayList<>();
-        
-        for (int i : section) 
+        for (int i = 0; i < section.length; i ++) 
         {
-            sectionList.add(i);
-        }
-        
-        for (int i = 0; i < arr.length; i ++) 
-        {
-            if (sectionList.contains(i+1)) arr[i] = 0;
-            else arr[i] = 1;
-        }
-        
-        for (int k = 0; k < arr.length; k ++) 
-        {
-            if (arr[k] == 0) 
+            if (paint + m - 1 < section[i]) 
             {
-                answer ++;
-                for (int v = 0; v < m; v ++) 
-                {
-                    if (k + v < arr.length) 
-                    {
-                        arr[k + v] = 1;
-                    }
-                    
-                }
+                result ++;
+                paint = section[i];
             }
         }
         
         
-        return answer;
+        return result;
     }
 }
