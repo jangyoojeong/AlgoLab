@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
-import java.util.Stack;
 
 public class Main {
 
@@ -11,20 +10,25 @@ public class Main {
         System.out.println(getRequiredBracketCount(inputString));
     }
 
-    public static long getRequiredBracketCount(String inputString) {
-        Stack<Character> stack = new Stack<>();
-        int unmatchedCloseBrackets = 0;
+    public static int getRequiredBracketCount(String inputString) {
+        int openBrackets = 0;  // 여는 괄호 '('의 수
+        int unmatchedCloseBrackets = 0;       // 매칭되지 않은 닫는 괄호 ')'의 수
 
-        for (char bracket : inputString.toCharArray()) {
-            if (stack.isEmpty() || bracket == '(') {
-                stack.add(bracket);
-            } else if (bracket == ')' && stack.peek() == '(') {
-                stack.pop();
+        for (char c : inputString.toCharArray()) {
+            if (c == '(') {
+                // 여는 괄호를 증가
+                openBrackets++;
             } else {
-                unmatchedCloseBrackets++;
+                // 닫는 괄호일 경우 여는 괄호와 짝이 맞으면 감소
+                if (openBrackets > 0) {
+                    openBrackets--;
+                } else {
+                    // 매칭되지 않는 닫는 괄호
+                    unmatchedCloseBrackets++;
+                }
             }
         }
 
-        return stack.size() + unmatchedCloseBrackets;
+        return openBrackets + unmatchedCloseBrackets;
     }
 }
